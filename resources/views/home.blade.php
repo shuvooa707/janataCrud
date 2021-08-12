@@ -65,9 +65,9 @@
     <div class="container-fluid  bg-light">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 mt-5 d-flex justify-content-center">
-                {{-- <button class="btn btn-info bg-danger px-5 text-light" onclick="addNew()">
+                <button class="btn btn-info bg-danger px-5 text-light" onclick="addNew()">
                     Create New
-                </button> --}}
+                </button>
             </div>
             <div class="col-lg-10 mt-2">
                 <table class=" text-center table table-bordered table-striped" id="table">

@@ -192,7 +192,7 @@ let configLine = {
 
 let configBar = {
     type: 'bar',
-    data,
+    dataBar,
     options: {
         plugins: {
             legend: {
@@ -238,7 +238,13 @@ function redrawLineChart ( trade_code ) {
     $('#myChart-line').replaceWith('<canvas id="myChart-line"></canvas>');
     new Chart(
         document.getElementById('myChart-line'),
-        config
+        configLine
+    );
+
+    $('#myChart-bar').replaceWith('<canvas id="myChart-bar"></canvas>');
+    new Chart(
+        document.getElementById('myChart-bar'),
+        configBar
     );
 }
 
