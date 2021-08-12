@@ -59,10 +59,7 @@ class HomeController extends Controller
     public function show($id = null)
     {
 
-        $file = file_get_contents(base_path("stock_market_data.json"));
-        $file = json_decode($file);
-        $file  = Collection::wrap($file);
-
+        $file  = Channel::all();
         $clusters = Collection::wrap($file->reduce(function($acc, $e) {
             if ( !isset($acc[$e->trade_code]) ) {
                 $acc[$e->trade_code] = [
@@ -89,7 +86,7 @@ class HomeController extends Controller
 
 
         // dd($clusters->first());
-        return view("home", [ "data" => $file, "clusters" => $clusters]);
+        return view("home", [ "data" => $file->take(10), "clusters" => $clusters]);
     }
 
     /**
@@ -110,9 +107,19 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id = null)
     {
-        //
+        Channel::find($req->id)->update([
+            "trade_code" => $req->trade_code,
+            "date" => $req->date,
+            "high" => $req->high,
+            "low" => $req->low,
+            "open" => $req->open,
+            "close" => $req->close,
+            "volume" => $req->volume,
+        ]);
+
+        return [ "msg" => "success"];
     }
 
     /**

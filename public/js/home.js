@@ -15,8 +15,8 @@ $(document).ready(function () {
     // defining row Delete function
     deleteRow = function(tr) {
         // removing row from database
-
-        let id = tr.datasets.id;
+        console.log(tr);
+        let id = tr.dataset.id;
         let _token = document.querySelector("input[name='_token']").value;
         let payload = new FormData();
         payload.append("_token", _token);
@@ -34,7 +34,7 @@ $(document).ready(function () {
                     table.row(tr).remove().draw(false);
                 }
             });
-        });
+        })();
 
     }
 });
@@ -52,8 +52,10 @@ function edit(tr) {
     form.querySelector("#edit_open").value = tr.querySelector("td:nth-child(6)").innerText;
     form.querySelector("#edit_close").value = tr.querySelector("td:nth-child(7)").innerText;
     form.querySelector("#edit_volume").value = tr.querySelector("td:nth-child(8)").innerText;
+    form.querySelector("input[name='id']").value = tr.dataset.id;
     $('#editModal').modal('show');
     update = () => {
+        let id = document.querySelector("input[name='id']").value;
         let trade = form.querySelector("#edit_trade_code").value;
         let date = form.querySelector("#edit_date").value;
         let high = form.querySelector("#edit_high").value;
@@ -64,6 +66,7 @@ function edit(tr) {
         let _token = document.querySelector("input[name='_token']").value;
 
         let payload = new FormData();
+        payload.append("id", id);
         payload.append("trade_code", trade);
         payload.append("date", date);
         payload.append("high", high);
@@ -74,13 +77,22 @@ function edit(tr) {
         payload.append("_token", _token);
 
         (async () => {
-            await fetch("/create",{
+            await fetch("/update",{
                 method : "POST",
                 body : payload
             })
             .then(r => r.json())
             .then(r => {
                 if ( r.msg == "success" ) {
+
+                    tr.querySelector("td:nth-child(2)").innerText = date;
+                    tr.querySelector("td:nth-child(3)").innerText = trade;
+                    tr.querySelector("td:nth-child(4)").innerText = high;
+                    tr.querySelector("td:nth-child(5)").innerText = low;
+                    tr.querySelector("td:nth-child(6)").innerText = open;
+                    tr.querySelector("td:nth-child(7)").innerText = close;
+                    tr.querySelector("td:nth-child(8)").innerText = volume;
+
                     $('#editModal').modal('hide');
                 } else {
 
@@ -152,6 +164,7 @@ function addNew() {
         })();
     }
 }
+
 
 
 

@@ -19,3 +19,4 @@ Route::get('/', [HomeController::class, 'show']);
 
 Route::post('/create', [HomeController::class, 'create']);
 Route::post('/remove', [HomeController::class, 'destroy']);
+Route::post('/update', [HomeController::class, 'update']);

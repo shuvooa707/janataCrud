@@ -86,7 +86,7 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $row)
-                        <tr data-id="">
+                        <tr data-id="{{ $row->id }}">
                             <td>{{ $loop->index }}</td>
                             <td>{{ $row->date }}</td>
                             <td>{{ $row->trade_code }}</td>
@@ -177,6 +177,7 @@
 
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" name="id">
                         <div class="form-group col-lg-12">
                             <label for="edit_trade_code">Trade Code</label>
                             <input type="text" id="edit_trade_code" class="form-control">
@@ -207,7 +208,7 @@
                         </div>
                     </div>
                     <div class="form-group col-lg-12">
-                        <div class="btn btn-info text-light col-lg-12" onclick="edit(this.parentElement.parentElement)">Update</div>
+                        <div class="btn btn-info text-light col-lg-12" onclick="update(this.parentElement.parentElement)">Update</div>
                     </div>
                 </div>
             </div>
