@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'show']);
+
+Route::post('/create', [HomeController::class, 'create']);
+Route::post('/remove', [HomeController::class, 'destroy']);
