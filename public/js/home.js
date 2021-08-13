@@ -117,6 +117,7 @@ function addNew() {
         let close = form.querySelector("#close").value;
         let volume = form.querySelector("#volume").value;
         let _token = document.querySelector("input[name='_token']").value;
+        let overlay = document.querySelector("#addNewModal .overlay");
 
         let payload = new FormData();
         payload.append("trade_code", trade);
@@ -154,7 +155,6 @@ function addNew() {
                                 Delete
                             </button>`
                         ]).draw(false);
-                        let overlay = document.querySelector("#addNewModal .overlay");
                         overlay.classList.add("hide");
                         $('#addNewModal').modal('hide');
                     } else {
@@ -192,7 +192,7 @@ let configLine = {
 
 let configBar = {
     type: 'bar',
-    dataBar,
+    data,
     options: {
         plugins: {
             legend: {

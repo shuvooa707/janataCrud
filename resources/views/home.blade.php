@@ -70,6 +70,7 @@
                 </button>
             </div>
             <div class="col-lg-10 mt-2">
+                <div class="overlay"></div>
                 <table class=" text-center table table-bordered table-striped" id="table">
                     <thead class=" bg-danger text-light" style="background: #a92112; color:white;">
                         <tr>
@@ -113,6 +114,7 @@
 
 
     <div class="modal mt-3" tabindex="-1" role="dialog" id="addNewModal">
+        <div class="overlay"></div>
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" style="min-width: 580px">
                 @csrf
@@ -165,6 +167,7 @@
 
 
     <div class="modal mt-3" tabindex="-1" role="dialog" id="editModal">
+        <div class="overlay"></div>
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" style="min-width: 580px">
 
